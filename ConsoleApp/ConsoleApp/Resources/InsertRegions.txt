@@ -1,0 +1,10 @@
+INSERT INTO REGION
+SELECT DISTINCT Country AS Name, NULL AS ParentId, 'Country' AS RegionType
+FROM #CountryByCity
+
+
+INSERT INTO REGION
+SELECT DISTINCT City AS Name, Id AS ParentId, 'City' AS RegionType
+FROM #CountryByCity
+JOIN Region ON Name = Country
+	AND RegionType = 'Country'
